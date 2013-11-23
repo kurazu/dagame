@@ -18,5 +18,3 @@ define [], () ->
 
             @ts = +new Date
             window.requestAnimationFrame @frame
-
-    return Loop: Loop
