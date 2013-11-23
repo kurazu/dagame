@@ -35,3 +35,7 @@ nosetests.xml
 .project
 .pydevproject
 *.sublime-workspace
+js/engine/*.map
+js/engine/*.js
+js/game/*.map
+js/game/*.js

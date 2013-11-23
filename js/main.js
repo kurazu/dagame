@@ -1,3 +1,3 @@
-require([], function() {
-    console.log('init');
+require(['game/loader'], function(loader) {
+    loader();
 });
