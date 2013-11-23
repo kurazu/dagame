@@ -60,7 +60,13 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+    background: #dddddd;
+}
 
+canvas {
+    background: #ffffff;
+}
 
 
 
