@@ -1,5 +1,5 @@
-define ['underscore', 'engine/math/vector'], (_, Vector) ->
-    class Item
+define ['underscore', 'engine/utils/events', 'engine/math/vector'], (_, Events, Vector) ->
+    class Item extends Events
         terminal_speed: 100
         x: 0,
         y: 0,
@@ -9,3 +9,6 @@ define ['underscore', 'engine/math/vector'], (_, Vector) ->
         constructor: (props) ->
             @v = new Vector 0, 0
             _.extend @, props
+        applyMomentum: (pVector) ->
+            pVector = pVector.scale 1 / @mass
+            @v.add pVector
