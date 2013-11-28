@@ -12,5 +12,4 @@ require.config
         jquery:
             exports: 'jQuery'
 
-require ['game/loader'], (loader) ->
-    loader()
+require ['game/loader']
