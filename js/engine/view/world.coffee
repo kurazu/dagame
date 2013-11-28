@@ -1,6 +1,6 @@
 define [], () ->
     class WorldView
-        pixel_per_meter: 5
+        pixel_per_meter: 25
         camera: null
         constructor: (@canvas) ->
             @width = canvas.width
@@ -9,19 +9,17 @@ define [], () ->
             ctx.translate 0, @height
             ctx.scale 1, -1
             ctx.save()
-        draw: (model) ->
+        preDraw: () ->
             ctx = @ctx
             ctx.save()
             ctx.clearRect 0, 0, @width, @height
             ctx.scale @pixel_per_meter, @pixel_per_meter
-
-            ctx.fillStyle = 'rgb(255, 0, 0)'
-            for item_model in model.items
-                ctx.save()
-                ctx.translate item_model.x, item_model.y
-                ctx.fillRect -item_model.width / 2, -item_model.height / 2, item_model.width, item_model.height
-                ctx.restore()
-
+        drawItem: (view, model) ->
+            ctx = @ctx
+            ctx.save()
+            view.draw ctx, model
             ctx.restore()
-        setCamera: (camera) ->
+        postDraw: () ->
+            @ctx.restore()
+        setCamera: (@camera) ->
 
