@@ -14,6 +14,7 @@ define [], () ->
             ctx.save()
             ctx.clearRect 0, 0, @width, @height
             ctx.scale @pixel_per_meter, @pixel_per_meter
+            ctx.lineWidth = 1 / @pixel_per_meter
         drawItem: (view, model) ->
             ctx = @ctx
             ctx.save()
