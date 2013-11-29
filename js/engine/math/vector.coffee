@@ -8,4 +8,4 @@ define [], () ->
         add: (other) ->
             @dx += other.dx
             @dy += other.dy
-            @
+

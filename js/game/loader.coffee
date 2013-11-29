@@ -35,15 +35,10 @@ define ['engine/utils/loop', 'engine/controller/world', 'engine/controller/box',
         y: 4.5
     world.addItem item
 
-    item = new BoxController
-        x: 2.5
-        y: 1.5
-    #world.addItem item
-
     player = new PlayerController keyboard,
         x: 0.5
-        y: 1.5
-    #world.addItem player
+        y: 2
+    world.addItem player
 
     loop_callback = (diff) ->
         world.animate diff
