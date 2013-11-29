@@ -12,9 +12,10 @@ define ['underscore', 'engine/model/item', 'engine/view/item'], (_, ItemModel, I
             @model = new @model_class model_options
             @view = new @view_class view_options
         animate: (fraction, world_model) ->
-            gravity = world_model.gravityForce.scaled fraction
-            velocity = @model.velocity.scaled(fraction).added gravity
-            new_position = @model.added velocity
+            gravity = world_model.gravityForce
+            @model.velocity.add gravity
+            @model.velocity.cap world_model.terminal_speed
+            new_position = @model.added @model.velocity.scaled fraction
             new_position
         checkCollision: (new_position, other) ->
             actual_x_diff = Math.abs(new_position.x - other.model.x)

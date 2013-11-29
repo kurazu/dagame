@@ -17,3 +17,11 @@ define [], () ->
             @x += other.x
             @y += other.y
             @
+        cap: (max) ->
+            length = Math.sqrt(@x * @x + @y * @y)
+            ratio = max / length
+            if ratio < 1
+                @x *= ratio
+                @y *= ratio
+            @
+
