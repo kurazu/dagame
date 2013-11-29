@@ -1,4 +1,6 @@
 define ['underscore'], (_) ->
+    'use strict'
+
     class ItemView
         default_options: {}
         constructor: (options) ->

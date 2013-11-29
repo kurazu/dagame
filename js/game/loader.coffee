@@ -1,5 +1,6 @@
 define ['engine/utils/loop', 'engine/controller/world', 'engine/controller/box',
         'engine/utils/keyboard', 'engine/controller/player'], (Loop, WorldController, BoxController, Keyboard, PlayerController) ->
+    'use strict'
 
     canvas = document.querySelector '#game'
     world = new WorldController canvas
@@ -37,11 +38,11 @@ define ['engine/utils/loop', 'engine/controller/world', 'engine/controller/box',
 
     player = new PlayerController keyboard,
         x: 0.5
-        y: 2
+        y: 15
     world.addItem player
 
-    loop_callback = (diff) ->
-        world.animate diff
+    loop_callback = (diff, fractionsOfSecond) ->
+        world.animate fractionsOfSecond
 
     game_loop = new Loop loop_callback
     game_loop.start()

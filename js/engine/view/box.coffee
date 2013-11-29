@@ -1,4 +1,6 @@
 define ['engine/view/item'], (ItemView) ->
+    'use strict'
+
     class BoxView extends ItemView
         default_options:
             lineColor: 'rgb(0, 0, 0)'

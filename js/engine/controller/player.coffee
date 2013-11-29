@@ -1,4 +1,6 @@
 define ['engine/controller/item', 'engine/view/box'], (ItemController, BoxView) ->
+    'use strict'
+
     class PlayerController extends ItemController
         view_class: BoxView
         default_model_options:

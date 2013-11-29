@@ -1,11 +1,20 @@
 define [], () ->
+    'use strict'
+
     class Vector
-        constructor: (@dx, @dy) ->
+        constructor: (@x, @y) ->
         toString: () ->
-            "Vector(#{@dx}, #{@dy})"
+            "Vector(#{@x}, #{@y})"
+        scaled: (ratio) ->
+            new Vector @x * ratio, @y * ratio
         scale: (ratio) ->
-            new Vector @dx * ratio, @dy * ratio
+            @x *= ratio
+            @y *= ratio
+            @
+        added: (other) ->
+            new Vector @x + other.x, @y + other.y
         add: (other) ->
-            @dx += other.dx
-            @dy += other.dy
+            @x += other.x
+            @y += other.y
+            @
 

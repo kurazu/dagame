@@ -1,4 +1,6 @@
 define ['underscore', 'engine/model/item', 'engine/view/item'], (_, ItemModel, ItemView) ->
+    'use strict'
+
     class ItemController
         model_class: ItemModel
         view_class: ItemView
@@ -9,5 +11,10 @@ define ['underscore', 'engine/model/item', 'engine/view/item'], (_, ItemModel, I
             view_options = _.extend {}, @default_view_options, view_options
             @model = new @model_class model_options
             @view = new @view_class view_options
-        animate: (diff) ->
+        animate: (fraction, world_model) ->
+            dv = @applyGravity fraction, world_model
+            v = @model.velocity.added dv
+            @model.add v
+        applyGravity: (fraction, world_model) ->
+            world_model.gravityForce.scaled fraction
 

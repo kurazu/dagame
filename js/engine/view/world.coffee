@@ -1,4 +1,6 @@
 define [], () ->
+    'use strict'
+
     class WorldView
         pixel_per_meter: 25
         camera: null

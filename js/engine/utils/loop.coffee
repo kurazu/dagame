@@ -1,4 +1,8 @@
 define [], () ->
+    'use strict'
+
+    SECOND = 1000
+
     class Loop
         min_diff: 10
         max_diff: 100
@@ -14,7 +18,7 @@ define [], () ->
             else if diff > @max_diff
                 diff = @max_diff
 
-            @callback diff
+            @callback diff, diff / SECOND
 
             @ts = +new Date
             window.requestAnimationFrame @frame

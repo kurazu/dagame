@@ -1,4 +1,6 @@
 define [], () ->
+    'use strict'
+
     class KeyBoard
         constructor: () ->
             @keys = {}
