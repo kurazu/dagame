@@ -17,13 +17,21 @@ define ['underscore', 'engine/model/item', 'engine/view/item'], (_, ItemModel, I
             new_position = @model.added velocity
             new_position
         checkCollision: (new_position, other) ->
-            if Math.abs(new_position.x - other.model.x) >= @model.half_width + other.model.half_width
+            actual_x_diff = Math.abs(new_position.x - other.model.x)
+            expected_x_diff = @model.half_width + other.model.half_width
+            x_diff = expected_x_diff - actual_x_diff
+            if x_diff <= 0
                 return false
 
-            if Math.abs(new_position.y - other.model.y) >= @model.half_height + other.model.half_height
+            actual_y_diff = Math.abs(new_position.y - other.model.y)
+            expected_y_diff = @model.half_height + other.model.half_height
+            y_diff = expected_y_diff - actual_y_diff
+            if y_diff <= 0
                 return false
 
-            return true
+            new_position.y += y_diff * (if new_position.y > other.model.x then 1 else -1)
+
+            return false
             # this_bounds = @model.getBounds new_position
             # other_bounds = other.model.getBounds()
 
