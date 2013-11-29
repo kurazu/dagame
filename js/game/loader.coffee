@@ -37,7 +37,7 @@ define ['engine/utils/loop', 'engine/controller/world', 'engine/controller/box',
     world.addItem item
 
     player = new PlayerController keyboard,
-        x: 0.5
+        x: 1
         y: 15
     world.addItem player
 

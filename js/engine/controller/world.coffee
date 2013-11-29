@@ -22,13 +22,19 @@ define ['engine/view/world', 'engine/model/world'], (WorldView, WorldModel) ->
 
             for item in items
                 new_position = item.animate fraction, world_model
-                if not new_position
-                    unmoved.push item
-                else
+                if new_position
                     moved.push [item, new_position]
+                else
+                    unmoved.push item
 
             for [item, new_position] in moved
-                item.model.setPosition new_position
+                collides = false
+                for fixed in unmoved
+                    collides = item.checkCollision new_position, fixed
+                    if collides
+                        break
+                if not collides
+                    item.model.setPosition new_position
             return
         draw: () ->
             view = @view
