@@ -12,9 +12,8 @@ define ['underscore', 'engine/model/item', 'engine/view/item'], (_, ItemModel, I
             @model = new @model_class model_options
             @view = new @view_class view_options
         animate: (fraction, world_model) ->
-            dv = @applyGravity fraction, world_model
-            v = @model.velocity.added dv
-            @model.add v
-        applyGravity: (fraction, world_model) ->
-            world_model.gravityForce.scaled fraction
+            gravity = world_model.gravityForce.scaled fraction
+            velocity = @model.velocity.added gravity
+            new_position = @model.added velocity
+            new_position
 

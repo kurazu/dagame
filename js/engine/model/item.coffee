@@ -10,3 +10,7 @@ define ['underscore', 'engine/math/vector'], (_, Vector) ->
             velocity: new Vector 0, 0
         constructor: (options) ->
             _.extend @, @default_options, options
+        setPosition: (vector) ->
+            @x = vector.x
+            @y = vector.y
+            return
