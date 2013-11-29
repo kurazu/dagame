@@ -1,5 +1,6 @@
 define ['engine/utils/loop', 'engine/controller/world', 'engine/controller/box',
-        'engine/utils/keyboard', 'engine/controller/player'], (Loop, WorldController, BoxController, Keyboard, PlayerController) ->
+        'engine/utils/keyboard', 'engine/controller/player',
+        'engine/math/vector', 'engine/controller/projectile'], (Loop, WorldController, BoxController, Keyboard, PlayerController, Vector, ProjectileController) ->
     'use strict'
 
     canvas = document.querySelector '#game'
@@ -37,9 +38,15 @@ define ['engine/utils/loop', 'engine/controller/world', 'engine/controller/box',
     world.addItem item
 
     player = new PlayerController keyboard,
-        x: 1
+        x: 4
         y: 15
     world.addItem player
+
+    item = new ProjectileController
+        x: 1
+        y: 10
+        velocity: new Vector 2, 0
+    world.addItem item
 
     loop_callback = (diff, fractionsOfSecond) ->
         world.animate fractionsOfSecond

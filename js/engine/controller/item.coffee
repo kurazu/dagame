@@ -13,7 +13,7 @@ define ['underscore', 'engine/model/item', 'engine/view/item'], (_, ItemModel, I
             @view = new @view_class view_options
         animate: (fraction, world_model) ->
             gravity = world_model.gravityForce.scaled fraction
-            velocity = @model.velocity.added gravity
+            velocity = @model.velocity.scaled(fraction).added gravity
             new_position = @model.added velocity
             new_position
         checkCollision: (new_position, other) ->
@@ -29,7 +29,12 @@ define ['underscore', 'engine/model/item', 'engine/view/item'], (_, ItemModel, I
             if y_diff <= 0
                 return false
 
-            new_position.y += y_diff * (if new_position.y > other.model.x then 1 else -1)
+            if y_diff < x_diff
+                new_position.y += y_diff * (if new_position.y > other.model.y then 1 else -1)
+                @model.velocity.y = 0
+            else
+                new_position.x += x_diff * (if new_position.x > other.model.x then 1 else -1)
+                @model.velocity.x = 0
 
             return false
             # this_bounds = @model.getBounds new_position
