@@ -4,52 +4,17 @@ define ['engine/utils/loop', 'engine/controller/world', 'engine/controller/box',
     'use strict'
 
     canvas = document.querySelector '#game'
-    world = new WorldController canvas
-
     keyboard = new Keyboard
+    world = new WorldController canvas, keyboard
+
     keyboard.bind()
 
-    #camera = new Camera -10, 100, 100, 0
-    #world.view.setCamera camera
+    world.load 1, 1
 
-    item = new BoxController
-        x: 0.5
-        y: 0.5
-    world.addItem item
-
-    item = new BoxController
-        x: 1.5
-        y: 1.5
-    world.addItem item
-
-    item = new BoxController
-        x: 2.5
-        y: 2.5
-    world.addItem item
-
-    item = new BoxController
-        x: 3.5
-        y: 3.5
-    world.addItem item
-
-    item = new BoxController
-        x: 4.5
-        y: 4.5
-    world.addItem item
-
-    player = new PlayerController keyboard,
-        x: 4
-        y: 15
-    world.addItem player
-
-    item = new ProjectileController
-        x: 1
-        y: 10
-        velocity: new Vector 2, 0
-    world.addItem item
+    world.on 'loaded', () ->
+        game_loop.start()
 
     loop_callback = (diff, fractionsOfSecond) ->
         world.animate fractionsOfSecond
 
     game_loop = new Loop loop_callback
-    game_loop.start()
